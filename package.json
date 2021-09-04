@@ -18,6 +18,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.4.1",
     "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-unused-imports": "^1.1.4",
     "ethereum-waffle": "^3.4.0",
     "ethers": "^5.4.6",
     "hardhat": "^2.6.2",
@@ -36,6 +37,9 @@
   },
   "scripts": {
     "prettier": "prettier --write 'contracts/**/*.sol'",
-    "lint": "prettier --list-different 'contracts/**/*.sol'"
+    "prettier:check": "prettier --list-different 'contracts/**/*.sol'",
+    "lint": "eslint . --ext .ts",
+    "size-contracts": "hardhat compile && hardhat size-contracts",
+    "test": "npx hardhat test"
   }
 }
