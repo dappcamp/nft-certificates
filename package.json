@@ -28,6 +28,7 @@
     "solhint": "^3.3.6",
     "solidity-coverage": "^0.7.17",
     "ts-node": "^10.2.1",
+    "typechain": "^5.1.2",
     "typescript": "^4.4.2"
   },
   "dependencies": {
