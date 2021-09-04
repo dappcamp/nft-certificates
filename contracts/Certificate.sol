@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import '@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol';
-import '@openzeppelin/contracts/utils/Counters.sol';
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
 
 contract Certificate is ERC721URIStorage {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
 
-    constructor() ERC721('Certificate', 'CERT') {}
+    constructor() ERC721("Certificate", "CERT") {}
 
     function awardCertificate(address player, string memory tokenURI)
         public
@@ -24,7 +24,7 @@ contract Certificate is ERC721URIStorage {
     }
 
     modifier disallowTransfer() {
-        require(false, 'Token transfer is not allowed');
+        require(false, "Token transfer is not allowed");
         _;
     }
 
