@@ -1,4 +1,8 @@
-node_modules
-artifacts
-typechain
-cache
+node_modules/
+artifacts/
+typechain/
+yarn-error.log
+cache/
+coverage/
+dist/
+coverage.json

@@ -38,8 +38,8 @@ const config: HardhatUserConfig = {
   },
   contractSizer: {
     alphaSort: false,
-    disambiguatePaths: false,
-    runOnCompile: true,
+    disambiguatePaths: true,
+    runOnCompile: false,
   },
 }
 

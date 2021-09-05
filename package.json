@@ -1,5 +1,8 @@
 {
   "name": "nft-certificates",
+  "descriptoin": "NFT Certificates for the Ethereum Bootcamp",
+  "license" : "MIT",
+  "version" : "1.0.0",
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.2",
     "@nomiclabs/hardhat-etherscan": "^2.1.6",
@@ -36,10 +39,12 @@
     "@openzeppelin/contracts": "^4.3.1"
   },
   "scripts": {
+    "compile" : "npx hardhat compile",
+    "test": "npx hardhat test",
+    "coverage" : "npx hardhat coverage",
+    "size-contracts": "npx hardhat size-contracts",    
     "prettier": "prettier --write 'contracts/**/*.sol'",
     "prettier:check": "prettier --list-different 'contracts/**/*.sol'",
-    "lint": "eslint . --ext .ts",
-    "size-contracts": "hardhat compile && hardhat size-contracts",
-    "test": "npx hardhat test"
+    "lint": "eslint . --ext .ts"
   }
 }
