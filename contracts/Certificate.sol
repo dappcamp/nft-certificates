@@ -41,14 +41,6 @@ contract Certificate is ERC721URIStorage, Ownable {
     function safeTransferFrom(
         address from,
         address to,
-        uint256 tokenId
-    ) public virtual override disallowTransfer {
-        super.safeTransferFrom(from, to, tokenId);
-    }
-
-    function safeTransferFrom(
-        address from,
-        address to,
         uint256 tokenId,
         bytes memory _data
     ) public virtual override disallowTransfer {
