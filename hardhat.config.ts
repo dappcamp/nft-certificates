@@ -1,16 +1,16 @@
-import '@typechain/hardhat'
-import '@nomiclabs/hardhat-ethers'
-import '@nomiclabs/hardhat-waffle'
-import '@nomiclabs/hardhat-etherscan'
-import 'hardhat-contract-sizer'
-import 'solidity-coverage'
+import "@typechain/hardhat";
+import "@nomiclabs/hardhat-ethers";
+import "@nomiclabs/hardhat-waffle";
+import "@nomiclabs/hardhat-etherscan";
+import "hardhat-contract-sizer";
+import "solidity-coverage";
 
-import { HardhatUserConfig } from 'hardhat/config'
-import { SolcUserConfig } from 'hardhat/types'
+import { HardhatUserConfig } from "hardhat/config";
+import { SolcUserConfig } from "hardhat/types";
 
 const DEFAULT_COMPILER_SETTINGS: SolcUserConfig = {
-  version: '0.8.0'
-}
+  version: "0.8.0",
+};
 
 const config: HardhatUserConfig = {
   networks: {
@@ -41,14 +41,14 @@ const config: HardhatUserConfig = {
     disambiguatePaths: true,
     runOnCompile: false,
   },
-}
+};
 
 if (process.env.ETHERSCAN_API_KEY) {
   config.etherscan = {
     // Your API key for Etherscan
     // Obtain one at https://etherscan.io/
     apiKey: process.env.ETHERSCAN_API_KEY,
-  }
+  };
 }
 
-export default config
+export default config;
