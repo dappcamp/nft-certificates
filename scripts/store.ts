@@ -55,12 +55,12 @@ async function main() {
   );
   const hashes = await deStore.uploadMetadata(cohortData);
 
-  let cohortUploadedData = <{ address: string; metadata: string }[]>[];
+  let cohortUploadedData = <{ address: string; metadataURI: string }[]>[];
 
   hashes.map((elem: string, idx: number) => {
     cohortUploadedData.push({
       address: cohortData[idx].address,
-      metadata: elem,
+      metadataURI: elem,
     });
   });
 
