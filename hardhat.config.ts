@@ -4,6 +4,7 @@ import "@nomiclabs/hardhat-waffle";
 import "@nomiclabs/hardhat-etherscan";
 import "hardhat-contract-sizer";
 import "solidity-coverage";
+import "hardhat-gas-reporter";
 
 import { HardhatUserConfig } from "hardhat/config";
 import { SolcUserConfig } from "hardhat/types";
