@@ -1,14 +1,15 @@
 {
   "name": "nft-certificates",
   "descriptoin": "NFT Certificates for the Ethereum Bootcamp",
-  "license" : "MIT",
-  "version" : "1.0.0",
+  "license": "MIT",
+  "version": "1.0.0",
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.2",
     "@nomiclabs/hardhat-etherscan": "^2.1.6",
     "@nomiclabs/hardhat-waffle": "^2.0.1",
     "@typechain/ethers-v5": "^7.0.1",
     "@typechain/hardhat": "^2.3.0",
+    "@types/minimist": "^1.2.2",
     "@types/node": "^16.7.9",
     "@typescript-eslint/eslint-plugin": "^4.30.0",
     "@typescript-eslint/parser": "^4.30.0",
@@ -29,6 +30,8 @@
     "hardhat": "^2.6.2",
     "hardhat-contract-sizer": "^2.0.3",
     "hardhat-gas-reporter": "^1.0.4",
+    "ipfs-http-client": "^53.0.0",
+    "minimist": "^1.2.5",
     "prettier": "^2.3.2",
     "prettier-plugin-solidity": "^1.0.0-beta.17",
     "solhint": "^3.3.6",
@@ -41,10 +44,10 @@
     "@openzeppelin/contracts": "^4.3.1"
   },
   "scripts": {
-    "compile" : "npx hardhat compile",
+    "compile": "npx hardhat compile",
     "test": "npx hardhat test",
-    "coverage" : "npx hardhat coverage",
-    "size-contracts": "npx hardhat size-contracts",    
+    "coverage": "npx hardhat coverage",
+    "size-contracts": "npx hardhat size-contracts",
     "prettier": "prettier --write 'contracts/**/*.sol'",
     "prettier:check": "prettier --list-different 'contracts/**/*.sol'",
     "lint": "eslint . --ext .ts"

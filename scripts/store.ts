@@ -1,18 +1,33 @@
 import { create } from "ipfs-http-client";
+import minimist from "minimist";
 import * as fs from "fs";
+
+class Configuration {
+  cohortId: number;
+  sourceDataPath: string;
+  outputPath: string;
+  imagesPath: string;
+
+  constructor(args: string[]) {
+    const params = minimist(args);
+    this.cohortId = params.cohortId;
+    this.sourceDataPath = params.sourceDataPath;
+    this.outputPath = params.outputPath;
+    this.imagesPath = params.imagesPath;
+  }
+}
 
 class DeStore {
   ipfs: any;
-  imageBasePath: string;
+  config: Configuration;
 
-  constructor(url: string, imageBasePath: string) {
+  constructor(url: string, config: Configuration) {
     this.ipfs = create({ url: url });
-
-    this.imageBasePath = imageBasePath;
+    this.config = config;
   }
 
   public async uploadImage(imageFileName: string) {
-    const imagePath = `${this.imageBasePath}/${imageFileName}`;
+    const imagePath = `${this.config.imagesPath}/${imageFileName}`;
     const fileInfo = await this.ipfs.add({
       path: imageFileName,
       content: fs.readFileSync(imagePath),
@@ -40,7 +55,11 @@ class DeStore {
     const metadataHashes = cohortData.map(
       async (elem: { name: string; image: string }) => {
         const imageHash = await this.uploadImage(elem.image);
-        return await this.addCertificate(elem.name, imageHash, 1);
+        return await this.addCertificate(
+          elem.name,
+          imageHash,
+          this.config.cohortId
+        );
       }
     );
 
@@ -49,9 +68,11 @@ class DeStore {
 }
 
 async function main() {
-  const deStore = new DeStore("https://ipfs.infura.io:5001", "metadata/images");
+  const config = new Configuration(process.argv);
+
+  const deStore = new DeStore("https://ipfs.infura.io:5001", config);
   const cohortData = JSON.parse(
-    fs.readFileSync("metadata/cohort1.json", "utf-8")
+    fs.readFileSync(config.sourceDataPath, "utf-8")
   );
   const hashes = await deStore.uploadMetadata(cohortData);
 
@@ -66,7 +87,7 @@ async function main() {
 
   const cohortUploadedDataJson = JSON.stringify(cohortUploadedData);
 
-  fs.writeFileSync("metadata/storeScriptOp.json", cohortUploadedDataJson);
+  fs.writeFileSync(config.outputPath, cohortUploadedDataJson);
 }
 
 main()
