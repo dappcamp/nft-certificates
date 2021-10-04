@@ -10,36 +10,21 @@ async function deployCertificate() {
   return certificate;
 }
 
-async function awardCertificate(
-  certificate: Contract,
-  toAddress: string,
-  metadataURI: string
-) {
-  const txn = await certificate.awardCertificate(toAddress, metadataURI);
-  return await txn.wait();
-}
-
 async function main() {
   const certificate = await deployCertificate();
   console.log(
     `Certificate contract deployed at: ${(await certificate).address}`
   );
 
-  const data = JSON.parse(
-    fs.readFileSync("metadata/storeScriptOp.json", "utf-8")
-  );
+  //save certificate
+  let contractAddress = <{ address: string }[]>[];
+  contractAddress.push({
+    address: certificate.address
+  });
 
-  for (let elem of data) {
-    const receipt = await awardCertificate(
-      certificate,
-      elem.address,
-      elem.metadataURI
-    );
+  const savedAddressData = JSON.stringify(contractAddress);
 
-    if (receipt.events.pop().event !== "Transfer") {
-      process.exit(1);
-    }
-  }
+  fs.writeFileSync("metadata/deployedAddress.json", savedAddressData);
 }
 
 main()
