@@ -12,6 +12,7 @@ async function awardCertificate(
 }
 
 async function main() {
+
   //fetch certificate
   const addressData = JSON.parse(
     fs.readFileSync("metadata/deployedAddress.json","utf-8")
@@ -32,9 +33,9 @@ async function main() {
       elem.metadataURI
     );
 
-    //if (receipt.events.pop().event !== "Transfer") {
-    //  process.exit(1);
-    //}
+    if (receipt.events.pop().event !== "Transfer") {
+      process.exit(1);
+    }
   }
 }
 
