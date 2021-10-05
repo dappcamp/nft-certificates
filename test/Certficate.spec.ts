@@ -18,7 +18,7 @@ describe('Certficates', () => {
 
     describe("award certificate", () => {
         it("should not be mintable by anyone except the owner", async() => {
-            await expect(certificate.connect(player1).awardCertificate(player1.address, "tokenURI")).to.be.revertedWith('Only Owner')
+            await expect(certificate.connect(player1).awardCertificate(player1.address, "tokenURI")).to.be.revertedWith('Ownable: caller is not the owner')
         })
     })
 
