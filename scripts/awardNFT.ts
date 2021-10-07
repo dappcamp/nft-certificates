@@ -18,9 +18,9 @@ async function main() {
     fs.readFileSync("metadata/deployedAddress.json","utf-8")
   ); 
 
-  const address = addressData[0]["address"];
+  const address = addressData["address"];
   const certContract = await ethers.getContractFactory('Certificate');
-  const certificate = await certContract.attach(address);
+  const certificate = certContract.attach(address);
 
   const data = JSON.parse(
     fs.readFileSync("metadata/storeScriptOp.json", "utf-8")

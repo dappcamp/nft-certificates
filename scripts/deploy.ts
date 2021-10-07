@@ -17,10 +17,9 @@ async function main() {
   );
 
   //save certificate
-  let contractAddress = <{ address: string }[]>[];
-  contractAddress.push({
+  let contractAddress = {
     address: certificate.address
-  });
+  };
 
   const savedAddressData = JSON.stringify(contractAddress);
 
