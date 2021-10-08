@@ -10,7 +10,7 @@ NFT Certificates for the Ethereum Bootcamp
 ## Upload certificates to IPFS
 
 ```sh
-npx ts-node scripts/store.ts --cohortId 1 --sourceDataPath metadata/cohort1.json --outputPath metadata/newOutput.json --imagesPath metadata/images
+npx ts-node scripts/store.ts --cohortId 1 --sourceDataPath metadata/cohort1.json --outputPath metadata/storeScriptOp.json --imagesPath metadata/images
 ```
 
 - `cohortId` - Cohort ID
