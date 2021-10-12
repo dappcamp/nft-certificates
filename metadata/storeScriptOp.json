@@ -1,10 +1,22 @@
 [
   {
-    "address": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
-    "metadataURI": "QmaR7XCvPqSgQ7n8oy72e8k1MAygV1Ey5uhJAja7NToCxK"
+    "address": "0x1896033f3324b5d867D07027F9a3D5c8753bbe19",
+    "metadataURI": "QmQ1ZJruAm5n8wgiLWjUDe9J2nzYP2tqt2EWEEwp66T7QD"
   },
   {
-    "address": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
-    "metadataURI": "QmaoD6VTHYaTyM3H4xb8mfJX9wKX1fLePhvNvrvo3GEaiX"
+    "address": "0x1da6ad8A4582BC81ad2E7f6Dbb3cf8F16514Ff0d",
+    "metadataURI": "QmTXu76YuLHNTAEEdSz4EpZ9nmbGb9Dzd9oK18uKPjNbAM"
+  },
+  {
+    "address": "0x1F5483030b47B4421f6e4935876594BAeB5f170f",
+    "metadataURI": "QmemEvxHnGX6wScUQDBKhogVmpbM6GNq2q342e9kdkG5tZ"
+  },
+  {
+    "address": "0x389A5bFaa5D25A3D17f45d4Ba3caFf1a7BDAe544",
+    "metadataURI": "QmeXniyeL14xJZapkhVcxKT4um8PhDuvpB7mefFtR4eDeu"
+  },
+  {
+    "address": "0x902BD101468806Dc9977F96bd1531075651687AD",
+    "metadataURI": "QmXzMRCmHx7NE6XmeT8Bq5yXuucgKmTsipnLEbTsJR3Jdy"
   }
 ]

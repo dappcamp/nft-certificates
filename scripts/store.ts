@@ -43,8 +43,14 @@ class DeStore {
   ) {
     const tokenMetaData = JSON.stringify({
       name: name,
-      displayImage: displayImage,
-      cohortID: cohortId,
+      image: displayImage,
+      attributes: [
+        {
+          trait_type: "CohortId",
+          display_type: "number",
+          value: cohortId,
+        },
+      ],
     });
 
     const hash = await this.ipfs.add(tokenMetaData);

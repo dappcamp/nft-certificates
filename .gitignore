@@ -6,3 +6,4 @@ cache/
 coverage/
 dist/
 coverage.json
+.env

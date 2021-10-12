@@ -8,10 +8,13 @@ import "hardhat-gas-reporter";
 
 import { HardhatUserConfig } from "hardhat/config";
 import { SolcUserConfig } from "hardhat/types";
+import * as dotenv from "dotenv";
 
 const DEFAULT_COMPILER_SETTINGS: SolcUserConfig = {
   version: "0.8.0",
 };
+
+dotenv.config();
 
 const config: HardhatUserConfig = {
   networks: {
@@ -26,6 +29,7 @@ const config: HardhatUserConfig = {
     },
     rinkeby: {
       url: `https://rinkeby.infura.io/v3/${process.env.INFURA_API_KEY}`,
+      accounts: [`0x${process.env.WALLET_PRIVATE_KEY}`],
     },
     goerli: {
       url: `https://goerli.infura.io/v3/${process.env.INFURA_API_KEY}`,
