@@ -8,10 +8,16 @@ use(solidity);
 
 describe("DappCampCertificates", () => {
     let dAppCampCertificate: DappCampCertificate;
+    let accounts: Wallet[];
     let owner: Wallet, account1: Wallet, account2: Wallet;
 
     beforeEach("deploy Certificate", async () => {
-        [owner, account1, account2] = await (ethers as any).getSigners();
+        accounts = await (ethers as any).getSigners();
+
+        owner = accounts[0];
+        account1 = accounts[1];
+        account2 = accounts[2];
+
         const DappCampCertificateFactory = await ethers.getContractFactory(
             "DappCampCertificate"
         );
@@ -86,6 +92,25 @@ describe("DappCampCertificates", () => {
             await expect(
                 dAppCampCertificate.connect(account1).burn(1)
             ).to.be.revertedWith("Ownable: caller is not the owner");
+        });
+
+        it("should be awardable in batches", async () => {
+            const txn = await dAppCampCertificate.batchAwardCertificates(
+                accounts.map((elem) => elem.address),
+                accounts.map((elem) => "tokenURI")
+            );
+
+            const receipt = await txn.wait();
+            const events = receipt.events ?? [];
+
+            for (let idx = 0; idx < events.length; idx++) {
+                let event = events[idx];
+                let args = event.args ?? [];
+
+                expect(event.event).to.equal("Transfer");
+                expect(args[0]).to.equal(ethers.constants.AddressZero);
+                expect(args[1]).to.equal(accounts[idx].address);
+            }
         });
     });
 });

@@ -33,6 +33,15 @@ contract DappCampCertificate is
         return newCertificateId;
     }
 
+    function batchAwardCertificates(
+        address[] memory to,
+        string[] memory tokenURIs
+    ) public onlyOwner {
+        for (uint256 idx = 0; idx < to.length; idx++) {
+            awardCertificate(to[idx], tokenURIs[idx]);
+        }
+    }
+
     modifier disallowTransfer() {
         require(false, "Token transfer is not allowed");
         _;
