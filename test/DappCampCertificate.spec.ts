@@ -20,7 +20,7 @@ describe("DappCampCertificates", () => {
         )) as DappCampCertificate;
     });
 
-    describe("award certificate", () => {
+    describe("certificate", () => {
         it("should not be mintable by anyone except the owner", async () => {
             await expect(
                 dAppCampCertificate
@@ -29,7 +29,7 @@ describe("DappCampCertificates", () => {
             ).to.be.revertedWith("Ownable: caller is not the owner");
         });
 
-        it("should not be transferable after the first transfer", async () => {
+        it("should not be transferable", async () => {
             const newTokenURI = await dAppCampCertificate
                 .connect(owner)
                 .callStatic.awardCertificate(account1.address, "tokenURI");
@@ -55,7 +55,7 @@ describe("DappCampCertificates", () => {
             ).to.be.revertedWith("Token transfer is not allowed");
         });
 
-        it("awarding the certificate should be successful", async () => {
+        it("should be awardable", async () => {
             await expect(
                 dAppCampCertificate.awardCertificate(
                     account1.address,
@@ -64,6 +64,28 @@ describe("DappCampCertificates", () => {
             )
                 .to.emit(dAppCampCertificate, "Transfer")
                 .withArgs(ethers.constants.AddressZero, account1.address, 1);
+        });
+
+        it("should be burnable", async () => {
+            const txn = await dAppCampCertificate
+                .connect(owner)
+                .awardCertificate(account1.address, "tokenURI");
+            await txn.wait();
+
+            await expect(dAppCampCertificate.burn(1))
+                .to.emit(dAppCampCertificate, "Transfer")
+                .withArgs(account1.address, ethers.constants.AddressZero, 1);
+        });
+
+        it("should not be burnable by anyone except the owner", async () => {
+            const txn = await dAppCampCertificate
+                .connect(owner)
+                .awardCertificate(account1.address, "tokenURI");
+            await txn.wait();
+
+            await expect(
+                dAppCampCertificate.connect(account1).burn(1)
+            ).to.be.revertedWith("Ownable: caller is not the owner");
         });
     });
 });

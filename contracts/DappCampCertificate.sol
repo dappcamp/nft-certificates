@@ -54,4 +54,8 @@ contract DappCampCertificate is
     ) public virtual override disallowTransfer {
         super.safeTransferFrom(from, to, tokenId, _data);
     }
+
+    function burn(uint256 tokenId) public onlyOwner {
+        _burn(tokenId);
+    }
 }
