@@ -1,10 +1,7 @@
 import { ethers, upgrades } from "hardhat";
 import { Wallet } from "ethers";
-import { expect, use } from "chai";
-import { solidity } from "ethereum-waffle";
+import { expect } from "chai";
 import { DappCampCertificate } from "../typechain/DappCampCertificate";
-
-use(solidity);
 
 describe("DappCampCertificates", () => {
     let dAppCampCertificate: DappCampCertificate;
