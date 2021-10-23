@@ -2,14 +2,14 @@ import { ethers } from "hardhat";
 import * as fs from "fs";
 import { Contract } from "@ethersproject/contracts";
 
-async function awardCertificate(
+async function awardCertificates(
     dAppCampCertificate: Contract,
-    toAddress: string,
-    metadataURI: string
+    toAddresses: string[],
+    metadataURIs: string[]
 ) {
-    const txn = await dAppCampCertificate.awardCertificate(
-        toAddress,
-        metadataURI
+    const txn = await dAppCampCertificate.batchAwardCertificates(
+        toAddresses,
+        metadataURIs
     );
     return await txn.wait();
 }
@@ -28,12 +28,23 @@ async function main() {
         fs.readFileSync("metadata/storeScriptOp.json", "utf-8")
     );
 
-    for (let elem of data) {
-        const receipt = await awardCertificate(
+    for (let idx = 0; idx < data.length; idx += 20) {
+        let batch = data.slice(idx, idx + 20);
+
+        const receipt = await awardCertificates(
             certificate,
-            elem.address,
-            elem.metadataURI
+            batch.map(
+                (elem: { address: string; metadataURI: string }) => elem.address
+            ),
+            batch.map(
+                (elem: { address: string; metadataURI: string }) =>
+                    elem.metadataURI
+            )
         );
+
+        if (receipt.events.length !== batch.length) {
+            process.exit(1);
+        }
 
         if (receipt.events.pop().event !== "Transfer") {
             process.exit(1);
