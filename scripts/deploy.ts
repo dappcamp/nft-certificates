@@ -1,34 +1,37 @@
-import { ethers } from "hardhat";
+import { ethers, upgrades } from "hardhat";
 import * as fs from "fs";
-import { Contract } from "@ethersproject/contracts";
 
 async function deployCertificate() {
-  const Certificate = await ethers.getContractFactory("Certificate");
-  const certificate = await Certificate.deploy();
+    const DappCampCertificate = await ethers.getContractFactory(
+        "DappCampCertificate"
+    );
+    const dAppCampCertificate = await upgrades.deployProxy(DappCampCertificate);
 
-  await certificate.deployed();
-  return certificate;
+    await dAppCampCertificate.deployed();
+    return dAppCampCertificate;
 }
 
 async function main() {
-  const certificate = await deployCertificate();
-  console.log(
-    `Certificate contract deployed at: ${(await certificate).address}`
-  );
+    const dAppCampCertificate = await deployCertificate();
+    console.log(
+        `Certificate contract deployed at: ${
+            (await dAppCampCertificate).address
+        }`
+    );
 
-  //save certificate
-  let contractAddress = {
-    address: certificate.address
-  };
+    //save certificate
+    let contractAddress = {
+        address: dAppCampCertificate.address,
+    };
 
-  const savedAddressData = JSON.stringify(contractAddress);
+    const savedAddressData = JSON.stringify(contractAddress);
 
-  fs.writeFileSync("metadata/deployedAddress.json", savedAddressData);
+    fs.writeFileSync("metadata/deployedAddress.json", savedAddressData);
 }
 
 main()
-  .then(() => process.exit(0))
-  .catch((error) => {
-    console.log(error);
-    process.exit(1);
-  });
+    .then(() => process.exit(0))
+    .catch((error) => {
+        console.log(error);
+        process.exit(1);
+    });
