@@ -1,11 +1,13 @@
-import { create } from "ipfs-http-client";
 import minimist from "minimist";
 import * as fs from "fs";
+import pinataClient from "@pinata/sdk";
+import * as dotenv from "dotenv";
 
 class Configuration {
     cohortId: number;
     sourceDataPath: string;
     outputPath: string;
+    videosPath: string;
     imagesPath: string;
 
     constructor(args: string[]) {
@@ -13,6 +15,7 @@ class Configuration {
         this.cohortId = params.cohortId;
         this.sourceDataPath = params.sourceDataPath;
         this.outputPath = params.outputPath;
+        this.videosPath = params.videosPath;
         this.imagesPath = params.imagesPath;
     }
 }
@@ -20,29 +23,34 @@ class Configuration {
 class DeStore {
     ipfs: any;
     config: Configuration;
+    client: any;
+    apiKey: string;
+    apiSecret: string;
 
-    constructor(url: string, config: Configuration) {
-        this.ipfs = create({ url: url });
+    constructor(config: Configuration) {
+        dotenv.config();
         this.config = config;
+        this.apiKey = process.env.PINATA_API_KEY;
+        this.apiSecret = process.env.PINATA_API_SECRET;
+        this.client = pinataClient(this.apiKey, this.apiSecret);
     }
 
-    public async uploadImage(imageFileName: string) {
-        const imagePath = `${this.config.imagesPath}/${imageFileName}`;
-        const fileInfo = await this.ipfs.add({
-            path: imageFileName,
-            content: fs.readFileSync(imagePath),
-        });
-
-        return fileInfo.cid.toString();
+    public async uploadFile(filePath: string) {
+        const result = await this.client.pinFileToIPFS(
+            fs.createReadStream(filePath)
+        );
+        return result.IpfsHash;
     }
 
     public async addCertificate(
         name: string,
+        displayVideo: string,
         displayImage: string,
         cohortId: number
     ) {
-        const tokenMetaData = JSON.stringify({
+        const tokenMetaData = {
             name: name,
+            animation_url: displayVideo,
             image: displayImage,
             attributes: [
                 {
@@ -51,18 +59,34 @@ class DeStore {
                     value: cohortId,
                 },
             ],
-        });
+        };
 
-        const hash = await this.ipfs.add(tokenMetaData);
-        return hash.cid.toString();
+        const response = await this.client.pinJSONToIPFS(tokenMetaData);
+        return response.IpfsHash;
     }
 
-    public async uploadMetadata(cohortData: [{ name: string; image: string }]) {
+    public async sleep(ms: number) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+    }
+
+    public async uploadMetadata(
+        cohortData: [{ name: string; video: string; image: string }]
+    ) {
         const metadataHashes = cohortData.map(
-            async (elem: { name: string; image: string }) => {
-                const imageHash = await this.uploadImage(elem.image);
+            async (elem: { name: string; video: string; image: string }) => {
+                const videoPath = `${this.config.videosPath}/${elem.video}`;
+                const videoHash = await this.uploadFile(videoPath);
+
+                const imagePath = `${this.config.imagesPath}/${elem.image}`;
+                const imageHash = await this.uploadFile(imagePath);
+
+                console.log(
+                    `Added video for member: ${elem.name} with hash: ${videoHash}`
+                );
+                await this.sleep(1000);
                 return await this.addCertificate(
                     elem.name,
+                    videoHash,
                     imageHash,
                     this.config.cohortId
                 );
@@ -75,8 +99,7 @@ class DeStore {
 
 async function main() {
     const config = new Configuration(process.argv);
-
-    const deStore = new DeStore("https://ipfs.infura.io:5001", config);
+    const deStore = new DeStore(config);
     const cohortData = JSON.parse(
         fs.readFileSync(config.sourceDataPath, "utf-8")
     );
