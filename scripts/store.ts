@@ -30,8 +30,8 @@ class DeStore {
     constructor(config: Configuration) {
         dotenv.config();
         this.config = config;
-        this.apiKey = process.env.PINATA_API_KEY;
-        this.apiSecret = process.env.PINATA_API_SECRET;
+        this.apiKey = process.env.PINATA_API_KEY as string;
+        this.apiSecret = process.env.PINATA_API_SECRET as string;
         this.client = pinataClient(this.apiKey, this.apiSecret);
     }
 
@@ -72,28 +72,28 @@ class DeStore {
     public async uploadMetadata(
         cohortData: [{ name: string; video: string; image: string }]
     ) {
-        const metadataHashes = cohortData.map(
-            async (elem: { name: string; video: string; image: string }) => {
-                const videoPath = `${this.config.videosPath}/${elem.video}`;
-                const videoHash = await this.uploadFile(videoPath);
+        let certHashes: string[] = [];
+        for (let elem of cohortData) {
+            const videoPath = `${this.config.videosPath}/${elem.video}`;
+            const videoHash = await this.uploadFile(videoPath);
 
-                const imagePath = `${this.config.imagesPath}/${elem.image}`;
-                const imageHash = await this.uploadFile(imagePath);
+            const imagePath = `${this.config.imagesPath}/${elem.image}`;
+            const imageHash = await this.uploadFile(imagePath);
 
-                console.log(
-                    `Added video for member: ${elem.name} with hash: ${videoHash}`
-                );
-                await this.sleep(1000);
-                return await this.addCertificate(
-                    elem.name,
-                    videoHash,
-                    imageHash,
-                    this.config.cohortId
-                );
-            }
-        );
+            console.log(
+                `Added video for member: ${elem.name} with hash: ${videoHash}`
+            );
+            await this.sleep(1000);
+            let certHash = await this.addCertificate(
+                elem.name,
+                videoHash,
+                imageHash,
+                this.config.cohortId
+            );
+            certHashes.push(certHash);
+        }
 
-        return Promise.all(metadataHashes);
+        return certHashes;
     }
 }
 

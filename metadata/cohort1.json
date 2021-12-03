@@ -1,27 +1,254 @@
 [
-  {
-    "address": "0x1896033f3324b5d867D07027F9a3D5c8753bbe19",
-    "name": "Sample Person 1",
-    "image": "sample.jpeg"
-  },
-  {
-    "address": "0x1da6ad8A4582BC81ad2E7f6Dbb3cf8F16514Ff0d",
-    "name": "Sample Person 2",
-    "image": "sample.jpeg"
-  },
-  {
-    "address": "0x1F5483030b47B4421f6e4935876594BAeB5f170f",
-    "name": "Sample Person 3",
-    "image": "sample.jpeg"
-  },
-  {
-    "address": "0x389A5bFaa5D25A3D17f45d4Ba3caFf1a7BDAe544",
-    "name": "Sample Person 4",
-    "image": "sample.jpeg"
-  },
-  {
-    "address": "0x902BD101468806Dc9977F96bd1531075651687AD",
-    "name": "Sample Person 5",
-    "image": "sample.jpeg"
-  }
+    {
+        "name": "Kylan Koblitz",
+        "video": "Kylan Koblitz.mp4",
+        "image": "Kylan Koblitz.jpg",
+        "address": "0x3306C0285658cAbd6EF0267C3ED143f0794CF1fe"
+    },
+    {
+        "name": "Kedar Kshatriya",
+        "video": "Kedar Kshatriya.mp4",
+        "image": "Kedar Kshatriya.jpg",
+        "address": "0xD46928057Da886dC016b03512E79a7577c78a455"
+    },
+    {
+        "name": "Midhun Dandamudi",
+        "video": "Midhun Dandamudi.mp4",
+        "image": "Midhun Dandamudi.jpg",
+        "address": "0x304C0dF5e4129B3759FF2f1691F3cE9d21FA707a"
+    },
+    {
+        "name": "Kevin Krumm",
+        "video": "Kevin Krumm.mp4",
+        "image": "Kevin Krumm.jpg",
+        "address": "0xD44D6115E501D79B4816151a1faCA116E0e96Da0"
+    },
+    {
+        "name": "Anthony Lee",
+        "video": "Anthony Lee.mp4",
+        "image": "Anthony Lee.jpg",
+        "address": "anthonylee.eth"
+    },
+    {
+        "name": "Jatin Goyal",
+        "video": "Jatin Goyal.mp4",
+        "image": "Jatin Goyal.jpg",
+        "address": "0x9832a896d43C637918Dd6334374981bd6325eB54"
+    },
+    {
+        "name": "Deva Annamalai",
+        "video": "Deva Annamalai.mp4",
+        "image": "Deva Annamalai.jpg",
+        "address": "bornonjuly4.eth"
+    },
+    {
+        "name": "Juan David Gomez Villalba",
+        "video": "Juan David Gomez Villalba.mp4",
+        "image": "Juan David Gomez Villalba.jpg",
+        "address": "0x0000000000591b1DA6B179D1dA1ee31AFAE473e5"
+    },
+    {
+        "name": "Adi Lanka",
+        "video": "Adi Lanka.mp4",
+        "image": "Adi Lanka.jpg",
+        "address": "0xA4ccEe6Cc259e13d529FbBc1aDAD2B29674a84c1"
+    },
+    {
+        "name": "Monica Sharma",
+        "video": "Monica Sharma.mp4",
+        "image": "Monica Sharma.jpg",
+        "address": "0x83BeCE69C18fdf7Ca46c9A9e65DEAe2292b9038A"
+    },
+    {
+        "name": "Joshua Mitchell",
+        "video": "Joshua Mitchell.mp4",
+        "image": "Joshua Mitchell.jpg",
+        "address": "0x0A22Fe4271c592F16794Bb4fE1eE6C8d59533f3c"
+    },
+    {
+        "name": "Dayitva Goel",
+        "video": "Dayitva Goel.mp4",
+        "image": "Dayitva Goel.jpg",
+        "address": "0x631088Af5A770Bee50FFA7dd5DC18994616DC1fF"
+    },
+    {
+        "name": "Greg Plumbly",
+        "video": "Greg Plumbly.mp4",
+        "image": "Greg Plumbly.jpg",
+        "address": "plumbly.eth"
+    },
+    {
+        "name": "Bruce Li",
+        "video": "Bruce Li.mp4",
+        "image": "Bruce Li.jpg",
+        "address": "0xF52cEE1041c6cbA4896346904242E174C4E8ddcd"
+    },
+    {
+        "name": "Amiyo Chatterjee",
+        "video": "Amiyo Chatterjee.mp4",
+        "image": "Amiyo Chatterjee.jpg",
+        "address": "0x0745D0c6efb2efC37D2f698381E601d254482b03"
+    },
+    {
+        "name": "Lasya Reddy",
+        "video": "Lasya Reddy.mp4",
+        "image": "Lasya Reddy.jpg",
+        "address": "0x33B64eEbf3CffD6E848E94d88e343e90ECCFbAbF"
+    },
+    {
+        "name": "Saurabh Lodha",
+        "video": "Saurabh Lodha.mp4",
+        "image": "Saurabh Lodha.jpg",
+        "address": "0x10855704d1Dde09d90C0D1afEe4E1e6626e45Bb7"
+    },
+    {
+        "name": "Pushpendra Pratap",
+        "video": "Pushpendra Pratap.mp4",
+        "image": "Pushpendra Pratap.jpg",
+        "address": "0xa1653916187106484F4A23Cc83a2813ed74e9F86"
+    },
+    {
+        "name": "Carlos Mercado",
+        "video": "Carlos Mercado.mp4",
+        "image": "Carlos Mercado.jpg",
+        "address": "0x98d33633E27F49f95B7bC03F1Fc13ea7cE448462"
+    },
+    {
+        "name": "Ishita Bhardwaj",
+        "video": "Ishita Bhardwaj.mp4",
+        "image": "Ishita Bhardwaj.jpg",
+        "address": "0xDA0E5E1F57ef1d9F3442A3153A992Ecc5a4eE1d4"
+    },
+    {
+        "name": "Aalap Parikh",
+        "video": "Aalap Parikh.mp4",
+        "image": "Aalap Parikh.jpg",
+        "address": "0x3C90B8E28F080E7C75D70dB776ec9950D5Fa5167"
+    },
+    {
+        "name": "Abhinay Chinnapolu",
+        "video": "Abhinay Chinnapolu.mp4",
+        "image": "Abhinay Chinnapolu.jpg",
+        "address": "0xaE46D974f1150b3734e6d63888BFdc1fb58192bF"
+    },
+    {
+        "name": "Prachiti Barge",
+        "video": "Prachiti Barge.mp4",
+        "image": "Prachiti Barge.jpg",
+        "address": "0x4E2f6DD99F9b40B43870C31e5A806B336276e933"
+    },
+    {
+        "name": "Victor Lau",
+        "video": "Victor Lau.mp4",
+        "image": "Victor Lau.jpg",
+        "address": "0x3558F133BBECA8D5572082072e79CE71fB38B71f"
+    },
+    {
+        "name": "Zishan Sami",
+        "video": "Zishan Sami.mp4",
+        "image": "Zishan Sami.jpg",
+        "address": "0x0bcd81842b22eB005BF0a55e72c971464A8a2606"
+    },
+    {
+        "name": "Sean Yang",
+        "video": "Sean Yang.mp4",
+        "image": "Sean Yang.jpg",
+        "address": "Seanyang.eth"
+    },
+    {
+        "name": "Lprsd",
+        "video": "Lprsd.mp4",
+        "image": "Lprsd.jpg",
+        "address": "0x1Fe5258dE3150133cEA1008Cc2Dcb1e268a03C42"
+    },
+    {
+        "name": "Vivien Tan",
+        "video": "Vivien Tan.mp4",
+        "image": "Vivien Tan.jpg",
+        "address": "0xDA8E089846F64cAA6176D319034094640069e4e8"
+    },
+    {
+        "name": "Harsh Balyan",
+        "video": "Harsh Balyan.mp4",
+        "image": "Harsh Balyan.jpg",
+        "address": "0xc64418607861a492aCf45dBa24712d7A0208143f"
+    },
+    {
+        "name": "Karthik K R",
+        "video": "Karthik K R.mp4",
+        "image": "Karthik K R.jpg",
+        "address": "0x94e9453A94034E3fea2f0595e5863aD92826132D"
+    },
+    {
+        "name": "Alex Yen",
+        "video": "Alex Yen.mp4",
+        "image": "Alex Yen.jpg",
+        "address": "0x5776105bEfe68E0503e27A382329f68DA770bCAE"
+    },
+    {
+        "name": "Akanksha",
+        "video": "Akanksha.mp4",
+        "image": "Akanksha.jpg",
+        "address": "0x93F1C955b2e94E5308624E738652582Ba3aA94C0"
+    },
+    {
+        "name": "Maks Pazuniak",
+        "video": "Maks Pazuniak.mp4",
+        "image": "Maks Pazuniak.jpg",
+        "address": "maks.eth"
+    },
+    {
+        "name": "Kevin Krumm",
+        "video": "Kevin Krumm.mp4",
+        "image": "Kevin Krumm.jpg",
+        "address": "0xD44D6115E501D79B4816151a1faCA116E0e96Da0"
+    },
+    {
+        "name": "Rahul Ravindran",
+        "video": "Rahul Ravindran.mp4",
+        "image": "Rahul Ravindran.jpg",
+        "address": "0x6076928e5468F44Cc8aDAa69B829fEF6609AD542"
+    },
+    {
+        "name": "Sree Mamilla",
+        "video": "Sree Mamilla.mp4",
+        "image": "Sree Mamilla.jpg",
+        "address": "0x5E1BF712C3A4c5d23B6491e5D1d34d57E6e0914D"
+    },
+    {
+        "name": "Femi Odugbesan",
+        "video": "Femi Odugbesan.mp4",
+        "image": "Femi Odugbesan.jpg",
+        "address": "femyeda.eth"
+    },
+    {
+        "name": "Santosh Eppalapally",
+        "video": "Santosh Eppalapally.mp4",
+        "image": "Santosh Eppalapally.jpg",
+        "address": "0x496F38Ce946Aecd1E544F35d4a4c9141A397B8Fa"
+    },
+    {
+        "name": "Mohan Varma",
+        "video": "Mohan Varma.mp4",
+        "image": "Mohan Varma.jpg",
+        "address": "0x717F5EE4e83b4A1E32126fF686E8574edB08107E"
+    },
+    {
+        "name": "Pritesh Soni",
+        "video": "Pritesh Soni.mp4",
+        "image": "Pritesh Soni.jpg",
+        "address": "0xB8959C030aD4eAbb63bca96210E7772E48BFe5F8"
+    },
+    {
+        "name": "Gunvant Kathrotiya",
+        "video": "Gunvant Kathrotiya.mp4",
+        "image": "Gunvant Kathrotiya.jpg",
+        "address": "0x3E94e998a5f9eFC045eB57823Da62432A02e8fB8"
+    },
+    {
+        "name": "Varun Thakore",
+        "video": "Varun Thakore.mp4",
+        "image": "Varun Thakore.jpg",
+        "address": "0x710b0564E5185aB1Ca2D56E8e4974965aAE1FE29"
+    }
 ]

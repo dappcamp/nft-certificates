@@ -7,8 +7,22 @@ async function awardCertificates(
     toAddresses: string[],
     metadataURIs: string[]
 ) {
+    let processedToAddresses: string[] = [];
+    for (let idx = 0; idx < toAddresses.length; idx++) {
+        let processedAddr: string;
+        if (toAddresses[idx].includes(".eth")) {
+            processedAddr = await ethers.provider.resolveName(toAddresses[idx]);
+            console.log(toAddresses[idx]);
+            console.log(processedAddr);
+        } else {
+            processedAddr = toAddresses[idx];
+        }
+
+        processedToAddresses.push(processedAddr);
+    }
+
     const txn = await dAppCampCertificate.batchAwardCertificates(
-        toAddresses,
+        processedToAddresses,
         metadataURIs
     );
     return await txn.wait();
@@ -49,6 +63,8 @@ async function main() {
         if (receipt.events.pop().event !== "Transfer") {
             process.exit(1);
         }
+
+        console.log("Processed batch");
     }
 }
 
